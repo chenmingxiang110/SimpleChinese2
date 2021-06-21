@@ -1,0 +1,7 @@
+numpy
+jieba
+pandas
+sklearn
+wordcloud
+matplotlib
+chinese-converter
