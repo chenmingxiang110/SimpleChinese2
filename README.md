@@ -13,3 +13,17 @@ pip install simplechinese
 ```
 import simplechinese as sc
 ```
+
+### 1. 文字预处理
+
+```
+a = "测试测试，testing;￥%&01234测试测试"
+```
+
+### 2. 基础NLP信息提取功能
+
+### 3. 繁体简体转换
+
+### 4. 特征提取和向量化
+
+### 5. 词云可视化
