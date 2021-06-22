@@ -69,7 +69,7 @@ TestING
 
 该部分中，分词功能使用 jieba 实现，源码请参考：https://github.com/fxsjy/jieba
 
-同/近义词查找使用 synonyms 实现，源码请参考：https://github.com/chatopera/Synonyms 但有所改动，改动如下
+同/近义词查找功能复用了 synonyms 中的词向量数据文件，源码请参考：https://github.com/chatopera/Synonyms 但有所改动，改动如下
 
 1. 由于 pip 上传文件限制，synonyms 需要用户在完成 pip 安装后再下载词向量文件，国内下载需要设置镜像地址或使用特殊手段，有所不便。因此此处将词向量用 float16 表示，并使用 pca 降维至 64 维。总体效果差别不大，如果在意，请直接安装 synonyms 处理同/近义词查找任务。
 
