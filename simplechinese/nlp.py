@@ -7,30 +7,70 @@ import sys
 import numpy as np
 import pandas as pd
 
+import Levenshtein
+from difflib import SequenceMatcher
+
+from sklearn.neighbors import KDTree
+from scipy.spatial import distance
+
+from collections import OrderedDict
+from collections.abc import MutableMapping
+
 import jieba
 jieba.setLogLevel(60)
 
-# _ROOT = os.path.abspath(os.path.dirname(__file__))
-# def _get_data(path):
-#     return os.path.join(_ROOT, 'data', path)
-#
-# # import pkg_resources
-# # data_file = pkg_resources.resource_filename(__name__, "data/names.pickle")
-# with open(_get_data('names.pickle'), 'rb') as handle:
-#     names = pickle.load(handle)
-# _nr = names['nr'] | names['nrt'] | names['nrfg']
-# _ns = names['nrt'] | names['ns'] | names['nt']
-# _n = set([])
-# for k in names.keys(): _n = _n | names[k]
+class LimitedSizeDict(MutableMapping):
+    def __init__(self, maxlen, items=None):
+        self._maxlen = maxlen
+        self.d = OrderedDict()
+        if items:
+            for k, v in items:
+                self[k] = v
+
+    @property
+    def maxlen(self):
+        return self._maxlen
+
+    def __getitem__(self, key):
+        self.d.move_to_end(key)
+        return self.d[key]
+
+    def __setitem__(self, key, value):
+        if key in self.d:
+            self.d.move_to_end(key)
+        elif len(self.d) == self.maxlen:
+            self.d.popitem(last=False)
+        self.d[key] = value
+
+    def __delitem__(self, key):
+        del self.d[key]
+
+    def __iter__(self):
+        return self.d.__iter__()
+
+    def __len__(self):
+        return len(self.d)
 
 curdir = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, curdir)
-with open(os.path.join(curdir, 'names.pickle'), 'rb') as handle:
+with open(os.path.join(curdir, 'data', 'names.pickle'), 'rb') as handle:
     names = pickle.load(handle)
 _nr = names['nr'] | names['nrt'] | names['nrfg']
 _ns = names['nrt'] | names['ns'] | names['nt']
 _n = set([])
 for k in names.keys(): _n = _n | names[k]
+
+with open(os.path.join(curdir, 'data', 'all_words.pickle'), 'rb') as handle:
+    all_words = pickle.load(handle)
+word_indices = {}
+for i,w in enumerate(all_words):
+    word_indices[w] = i
+all_weights = np.load(os.path.join(curdir, 'data', 'all_weights_64.npy'))
+kdt = KDTree(all_weights, leaf_size=10, metric = "euclidean")
+all_weights_normed = all_weights/np.sqrt(np.sum(all_weights**2, 1, keepdims=True))
+kdt = KDTree(all_weights_normed, leaf_size=10, metric = "euclidean")
+
+cache=LimitedSizeDict(10000) # 缓存一万条最近的记录
 
 def extract_nums(x, isList=False, dtype=float):
     """
@@ -187,3 +227,31 @@ def extract_nouns(x, isList=False, split_mode=0, extract_mode="all", token="/"):
         return x.apply(func)
     else:
         raise ValueError("The type of the input variable should be string, pd.Series, pandas.DataFrame.")
+
+def string_distance(a,b,mode="Levenshtein"):
+    if mode=="SequenceMatcher":
+        return SequenceMatcher(None, a, b).ratio()
+    elif mode=="Levenshtein":
+        return Levenshtein.ratio(a, b)
+    # elif mode=="Synonym":
+    #     return synonyms.compare(a, b, seg=True)
+    else:
+        raise ValueError("Invalid Mode.")
+
+def find_synonyms(a, n=10):
+    res = []
+    if a not in word_indices:
+        return res
+    if (a,n) in cache:
+        return cache[(a,n)]
+    index = word_indices[a]
+    v = all_weights_normed[index]
+    [distances], [points] = kdt.query(np.array([v]), k=n, return_distance=True)
+    for point, d in zip(points, distances):
+        score_cos = 1-distance.cosine(
+            all_weights_normed[index],
+            all_weights_normed[point]
+        )
+        res.append((all_words[point], score_cos))
+    cache[(a,n)] = res
+    return res

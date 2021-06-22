@@ -13,4 +13,7 @@ from .nlp import *
 from . import conversion
 from .conversion import *
 
+# from . import synonyms
+# from .synonyms import *
+
 __version__ = "0.2.0"
