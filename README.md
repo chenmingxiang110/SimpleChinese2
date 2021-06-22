@@ -29,7 +29,6 @@ import simplechinese as sc
 ### 1. 文字预处理
 
 ```
->>> import simplechinese as sc
 >>> x = "测试测试，TestING    ;￥%& 01234测试测试"
 
 >>> print(sc.only_digits(x))         # 仅保留数字
