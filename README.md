@@ -12,7 +12,7 @@ SimpleChinese2 集成了许多基本的中文NLP功能，使基于 Python 的中
 pip install simplechinese==0.2.7
 ```
 
-如直接从git上clone，那么需要从以下地址下载词向量文件：
+如从 git 上 clone，需要从以下地址下载词向量文件：
 
 ```
 https://drive.google.com/file/d/1ltyiTHZk8kIBYQGbZS9GoO_DwDOEWnL9/view?usp=sharing
