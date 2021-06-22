@@ -78,6 +78,26 @@ TestING
 3. 原项目中未设置缓存上限，本项目中仅保留最近10000次查找记录。
 
 ```
+x = "今天是我参加工作的第1天，我花了23.33元买了写零食犒劳一下自己。"
+print(sc.extract_nums(x))              # 提取数字信息
+[1.0, 23.33]
+
+# mode: 0: No single character words. The words may be overlapped.
+#       1: Have single character words. The words may be overlapped.
+#       2: No single character words. The words are not overlapped.
+#       3: Have single character words. The words are not overlapped.
+#       4: Only single characters.
+print(sc.extract_words(x, mode=0))      # 分词
+['今天', '参加', '工作', '我花', '23.33', '零食', '犒劳', '一下', '自己']
+
+a = "做人真的好难"
+b = "做人实在太难了"
+print(sc.string_distance(a,b))  # 编辑距离
+0.46153846153846156
+
+x = "种族歧视"
+print(sc.find_synonyms(x))  # 同/近义词
+[('种族歧视', 1.0), ('种族主义', 0.84619140625), ('歧视', 0.76416015625), ('暴力行为', 0.75048828125), ('性别歧视', 0.74609375), ('蔑视', 0.7421875), ('言论', 0.71533203125), ('侮辱', 0.7138671875), ('种族问题', 0.712890625), ('仇恨', 0.71142578125)]
 ```
 
 ### 3. 繁体简体转换
