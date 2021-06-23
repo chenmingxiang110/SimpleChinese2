@@ -1,7 +1,11 @@
 import re
-
+import unicodedata
 import numpy as np
 import pandas as pd
+
+table = {ord(f):ord(t) for f,t in zip(
+    u'，。！？【】（）％＃＠＆１２３４５６７８９０',
+    u',.!?[]()%#@&1234567890')}
 
 def _parse(func, x):
     if isinstance(x, str):
@@ -186,6 +190,14 @@ def toUpper(x):
         return _s.upper()
     return _parse(func, x)
 
+def punc_norm(x):
+    """
+    Normalize chinese punctuations and special characters
+    """
+    h = unicodedata.normalize('NFKC', x)
+    h = h.translate(table)
+    return h
+
 def clean(x):
     """
     This function does the following:
@@ -197,7 +209,7 @@ def clean(x):
     3. remove_punctuations(): Remove all the punctuations in a string or a pandas.DataFrame.
 
     4. remove_space(): Remove all the spaces in a string or a pandas.DataFrame.
-    
+
     |
     """
     y = fillna(x)
