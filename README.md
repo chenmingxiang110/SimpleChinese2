@@ -9,7 +9,7 @@ SimpleChinese2 集成了许多基本的中文NLP功能，使基于 Python 的中
 ## 安装
 
 ```
-pip install simplechinese==0.2.7
+pip install -U simplechinese==0.2.8
 ```
 
 如从 git 上 clone，需要从以下地址下载词向量文件：
@@ -124,5 +124,3 @@ print(sc.find_synonyms(x, n=3))  # 同/近义词
 ### TODO:
 
 1. 句子向量化及其他特征提取相关工具
-
-2. 中英文标点转换
