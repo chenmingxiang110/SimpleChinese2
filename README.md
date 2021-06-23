@@ -76,7 +76,7 @@ TestING
 
 1. 由于 pip 上传文件限制，synonyms 需要用户在完成 pip 安装后再下载词向量文件，国内下载需要设置镜像地址或使用特殊手段，有所不便。因此此处将词向量用 float16 表示，并使用 pca 降维至 64 维。总体效果差别不大，如果在意，请直接安装 synonyms 处理同/近义词查找任务。
 
-2. 原项目通过构建 KDTree 实现快速查找，但比较相似度是使用 cosine similarity，而 KDTree (sklearn) 本身不支持通过 cosine similarity 构建。因此原项目使用欧式距离构建树，导致输出结果有部分顺序混乱。为修复该问题，本项目将词向量归一化后再构建 KDTree，改动虽小，但使得向量间的 cosine similarity 与欧式距离的顺序保持一致。具体推导可参考下文：https://stackoverflow.com/questions/34144632/using-cosine-distance-with-scikit-learn-kneighborsclassifier
+2. 原项目通过构建 KDTree 实现快速查找，但比较相似度是使用 cosine similarity，而 KDTree (sklearn) 本身不支持通过 cosine similarity 构建。因此原项目使用欧式距离构建树，导致输出结果有部分顺序混乱。为修复该问题，本项目将词向量归一化后再构建 KDTree，使得向量间的 cosine similarity 与欧式距离（即割线距离）正相关。具体推导可参考下文：https://stackoverflow.com/questions/34144632/using-cosine-distance-with-scikit-learn-kneighborsclassifier
 
 3. 原项目中未设置缓存上限，本项目中仅保留最近10000次查找记录。
 
