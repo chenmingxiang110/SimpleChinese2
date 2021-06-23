@@ -61,6 +61,10 @@ TestING
 >>> print(sc.toUpper(x))             # 修改为全大写字母
 测试测试，TESTING    ;￥%& 01234测试测试
 
+>>> x = "测试，TestING：１２３４５＠＃【】+=-（）。."
+>>> print(sc.punc_norm(x))           # 将中文标点符号转换成英文标点符号
+测试,TestING:12345@#[]+=-()..
+
 >>> # y = fillna(df) # 将pandas.DataFrame中的N/A单元格填充为长度为0的str
 ```
 
