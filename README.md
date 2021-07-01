@@ -19,7 +19,6 @@ https://drive.google.com/file/d/1ltyiTHZk8kIBYQGbZS9GoO_DwDOEWnL9/view?usp=shari
 ```
 
 并拷贝至"./simplechinese/data/"文件夹下
-
 如仅单独需要使用pinyin文字互相转换模块，可以安装 simplepinyin：
 
 ```
