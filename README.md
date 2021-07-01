@@ -20,6 +20,20 @@ https://drive.google.com/file/d/1ltyiTHZk8kIBYQGbZS9GoO_DwDOEWnL9/view?usp=shari
 
 并拷贝至"./simplechinese/data/"文件夹下
 
+如仅单独需要使用pinyin文字互相转换模块，可以安装 simplepinyin：
+
+```
+pip install -U simplepinyin==0.1.1
+```
+
+如从 git 上 clone，需要从以下地址下载pinyin文字词表文件：
+
+```
+https://drive.google.com/file/d/1gmhDirGSXPZbYD1g_KGzCylOK5JbCdFd/view?usp=sharing
+```
+
+并拷贝至"./simplepinyin/"文件夹下
+
 ## 使用方法
 
 ```
