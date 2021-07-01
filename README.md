@@ -9,7 +9,7 @@ SimpleChinese2 集成了许多基本的中文NLP功能，使基于 Python 的中
 ## 安装
 
 ```
-pip install -U simplechinese==0.2.8
+pip install -U simplechinese==0.2.10
 ```
 
 如从 git 上 clone，需要从以下地址下载词向量文件：
@@ -130,9 +130,28 @@ print(sc.find_synonyms(x, n=3))  # 同/近义词
 乌龟测试123
 ```
 
-### 4. 特征提取和向量化
 
-### 5. 词云和可视化
+### 4. 拼音文字转换
+
+该部分中，文字转拼音功能使用 pypinyin 实现，源码请参考：https://github.com/mozillazg/python-pinyin
+
+```
+>>> sc.str2pinyin("我们都有光明的未来", hasTone=True)
+['wo3', 'men', 'dou1', 'you3', 'guang1', 'ming2', 'de', 'wei4', 'lai2']
+
+>>> sc.str2pinyin("我们都有光明的未来", hasTone=False)
+['wo', 'men', 'dou', 'you', 'guang', 'ming', 'de', 'wei', 'lai']
+
+>>> sc.pinyin2str("jin1 tian1 de tian1 qi4 zhen1 bu4 cuo4")
+'今天的天气真不错'
+
+>>> sc.pinyin2str("shuang ye hong yu er yue hua")
+'霜叶红于二月花'
+```
+
+### 5. 特征提取和向量化
+
+### 6. 词云和可视化
 
 ### TODO:
 
