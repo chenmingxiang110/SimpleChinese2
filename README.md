@@ -81,7 +81,7 @@ TestING
 >>> # y = fillna(df) # 将pandas.DataFrame中的N/A单元格填充为长度为0的str
 ```
 
-### 2. 基础NLP信息提取功能
+### 2. 基础NLP信息提取功能（分词、近义词、编辑距离）
 
 该部分中，分词功能使用 jieba 实现，源码请参考：https://github.com/fxsjy/jieba
 
