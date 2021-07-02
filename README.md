@@ -8,6 +8,8 @@ SimpleChinese2 集成了许多基本的中文NLP功能，使基于 Python 的中
 
 ## 安装
 
+### 安装 simplechinese
+
 ```
 pip install -U simplechinese==0.2.10
 ```
@@ -19,7 +21,10 @@ https://drive.google.com/file/d/1ltyiTHZk8kIBYQGbZS9GoO_DwDOEWnL9/view?usp=shari
 ```
 
 并拷贝至"./simplechinese/data/"文件夹下
-如仅单独需要使用pinyin文字互相转换模块，可以安装 simplepinyin：
+
+### 安装 simplepinyin
+
+如仅单独需要使用pinyin文字互相转换模块，可以安装 simplepinyin （如果安装了 simplechinese，那么就已经自动下载安装了 simplepinyin，没必要再单独安装）：
 
 ```
 pip install -U simplepinyin==0.1.1
