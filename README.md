@@ -11,7 +11,7 @@ SimpleChinese2 集成了许多基本的中文NLP功能，使基于 Python 的中
 ### 安装 simplechinese
 
 ```
-pip install -U simplechinese==0.2.10
+pip install -U simplechinese==0.2.11
 ```
 
 如从 git 上 clone，需要从以下地址下载词向量文件：
