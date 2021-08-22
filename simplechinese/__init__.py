@@ -19,4 +19,4 @@ from .pinyin import *
 # from . import synonyms
 # from .synonyms import *
 
-__version__ = "0.2.10"
+__version__ = "0.2.11"
