@@ -18,6 +18,9 @@ pip install -U simplechinese==0.2.11
 
 ```
 https://drive.google.com/file/d/1ltyiTHZk8kIBYQGbZS9GoO_DwDOEWnL9/view?usp=sharing
+
+百度网盘链接:
+链接: https://pan.baidu.com/s/1At0oLTgF6_U6Kq1qdJ63lw  密码: w0r3
 ```
 
 并拷贝至"./simplechinese/data/"文件夹下
@@ -34,6 +37,9 @@ pip install -U simplepinyin==0.1.1
 
 ```
 https://drive.google.com/file/d/1gmhDirGSXPZbYD1g_KGzCylOK5JbCdFd/view?usp=sharing
+
+百度网盘链接:
+链接: https://pan.baidu.com/s/10Bpm7ZY_6_H_hahRJmQ9Jw  密码: eoma
 ```
 
 并拷贝至"./simplepinyin/"文件夹下
