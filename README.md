@@ -11,7 +11,7 @@ SimpleChinese2 集成了许多基本的中文NLP功能，使基于 Python 的中
 ### 安装 simplechinese
 
 ```
-pip install -U simplechinese==0.2.11
+pip install -U simplechinese==0.2.14
 ```
 
 如从 git 上 clone，需要从以下地址下载词向量文件：
@@ -160,11 +160,25 @@ print(sc.find_synonyms(x, n=3))  # 同/近义词
 '霜叶红于二月花'
 ```
 
-### 5. 文本纠错和语法检查（汉语）--测试版
+### 5. 拼音文字转换
+```
+>>> sc.generate_name(language="zh", sex="male")
+'邹企铭'
+>>> sc.generate_name(language="zh", sex="female")
+'郝茂枝'
+>>> sc.generate_name(language="en", sex="male")
+'Evans Abrams'
+>>> sc.generate_name(language="en", sex="female")
+'Ocie Woodard'
+sc.generate_name()
+'彭欣蕊'
+```
 
-### 6. 特征提取和向量化
+### 6. 文本纠错和语法检查（汉语）--测试版
 
-### 7. 词云和可视化
+### 7. 特征提取和向量化
+
+### 8. 词云和可视化
 
 ### TODO:
 
