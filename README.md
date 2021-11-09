@@ -160,7 +160,7 @@ print(sc.find_synonyms(x, n=3))  # 同/近义词
 '霜叶红于二月花'
 ```
 
-### 5. 拼音文字转换
+### 5. 姓名生成
 ```
 >>> sc.generate_name(language="zh", sex="male")
 '邹企铭'
